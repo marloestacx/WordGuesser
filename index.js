@@ -27,16 +27,17 @@ const options = {
   },
 };
 
+let newData = [];
+
 // home page
 app.get("/", (req, res) => {
   fetch(url, options)
     .then((response) => response.json())
     .then((data) => {
-      // console.log(data.list[2].definition);
-      // console.log(data.);
-      // console.log(sorted);
-
-      res.render("home", { data: data.list[2].definition });
+      //sort on definition with most thumbs up
+      data.list.sort(({ thumbs_up: a }, { thumbs_up: b }) => b - a);
+      newData.push(data);
+      res.render("home", { data: data.list[0].definition });
     })
     .catch((err) => res.send(err));
 });
@@ -47,6 +48,11 @@ io.on("connection", (socket) => {
 
   socket.on("message", (message) => {
     io.emit("message", message);
+
+    //if word is guessed correct
+    if (message == newData[0].list[0].word) {
+      console.log("correct");
+    }
   });
 
   socket.on("disconnect", () => {
