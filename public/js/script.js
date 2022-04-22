@@ -19,9 +19,16 @@ socket.on("message", (message) => {
   messages.scrollTop = messages.scrollHeight;
 });
 
-socket.on("userConnected", (connectCounter) => {
-  console.log("test");
-  amounts.appendChild(
-    Object.assign(document.createElement("p"), { textContent: connectCounter })
+socket.on("correct", (correct) => {
+  messages.appendChild(
+    Object.assign(document.createElement("li"), { textContent: correct })
   );
+  console.log(correct); // world
 });
+
+// socket.on("userConnected", (connectCounter) => {
+//   console.log("test");
+//   amounts.appendChild(
+//     Object.assign(document.createElement("p"), { textContent: connectCounter })
+//   );
+// });

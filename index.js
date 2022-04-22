@@ -52,12 +52,19 @@ io.on("connection", (socket) => {
     //if word is guessed correct
     if (message == newData[0].list[0].word) {
       console.log("correct");
+      var correct = "correct";
+      io.emit("correct", correct);
+      // socket.on("correct", (correct) => {
+      //   console.log(correct);
+
+      //   io.emit("correct", correct);
+      // });
     }
   });
 
   socket.on("disconnect", () => {
     console.log("user disconnected");
-    io.emit("userConnected", connectCounter);
+    // io.emit("userConnected", connectCounter);
     connectCounter--;
   });
 });
