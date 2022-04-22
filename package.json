@@ -1,0 +1,30 @@
+{
+  "name": "real-time-web-2122",
+  "version": "1.0.0",
+  "description": "## Table of Contents - [Synopsis](#synopsis) - [Description](#description) - [Communication](#communication) - [Goals](#goals) - [Grading](#grading) - [Programme](#programme)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marloestacx/real-time-web-2122.git"
+  },
+  "author": "Marloes Tacx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marloestacx/real-time-web-2122/issues"
+  },
+  "homepage": "https://github.com/marloestacx/real-time-web-2122#readme",
+  "dependencies": {
+    "ejs": "^3.1.7",
+    "express": "^4.17.3",
+    "node-fetch": "^3.2.3",
+    "nodemon": "^2.0.15",
+    "socket.io": "^4.4.1"
+  }
+}
