@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./components/head.ejs") -%>
+  </head>
+
+  <body>
+    <main>
+      <body>
+        <main>
+          <h1>Guess the word</h1>
+          <section>
+            <h2><%- data -%></h2>
+      </section>
+      <section>
+        <ul></ul>
+        <form>
+          <input type="text" autocomplete="off" />
+          <button><span>Send</span></button>
+        </form>
+      </section>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/script.js"></script>
+  </body>
+</html>
