@@ -1,18 +1,16 @@
 body {
-  background: rgb(2, 0, 36);
+  background: rgb(162, 209, 152);
   background: linear-gradient(
     90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(139, 0, 255, 1) 0%,
-    rgba(0, 212, 255, 1) 100%
+    rgba(162, 209, 152, 1) 0%,
+    rgba(135, 178, 123, 1) 100%
   );
 
   font-family: "Courier New", Courier, monospace;
 }
 
 section {
-  background-color: #ffffffd6;
-  border-radius: 50px;
+  background-color: white;
   display: flex;
   flex-direction: column;
   padding: 1em;
@@ -22,17 +20,27 @@ section:nth-of-type(2) {
   margin-top: 1em;
 }
 
+h1 {
+  text-align: center;
+}
+
 ul {
   padding: 0;
 }
 
-li:nth-of-type(even) {
-  background-color: #a9a9a957;
-}
+/* li:nth-of-type(even) {
+  background-color: #dff7d9;
+} */
 
 li {
   list-style: none;
   padding: 0.5em 0;
+}
+
+.answer {
+  /* color: #87b27b; */
+  background-color: #dff7d9;
+  font-weight: 700;
 }
 
 input {
