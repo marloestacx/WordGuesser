@@ -11,23 +11,35 @@ console.log(person);
 document.querySelector("form").addEventListener("submit", (event) => {
   event.preventDefault();
   if (input.value) {
-    socket.emit("message", person + ": " + input.value);
+    socket.emit("message", input.value);
     input.value = "";
   }
 });
 
 socket.on("message", (message) => {
   messages.appendChild(
-    Object.assign(document.createElement("li"), { textContent: message })
+    Object.assign(document.createElement("li"), {
+      textContent: person + ": " + message,
+    })
   );
   messages.scrollTop = messages.scrollHeight;
 });
 
+//correct answer
 socket.on("correct", (correct) => {
   messages.appendChild(
-    Object.assign(document.createElement("li"), { textContent: correct })
+    Object.assign(document.createElement("li"), {
+      textContent: person + ": " + correct,
+      className: "answer",
+    })
   );
-  console.log(correct); // world
+  messages.appendChild(
+    Object.assign(document.createElement("li"), {
+      textContent: "correct",
+      className: "answer",
+    })
+  );
+  console.log(correct);
 });
 
 socket.emit("create", "room1");
