@@ -55,18 +55,20 @@ io.on("connection", (socket) => {
   connectCounter++;
 
   socket.on("message", (message) => {
-    io.emit("message", message);
+    console.log(message);
 
     //if word is guessed correct
-    if (message == newData[0].list[0].word) {
-      console.log("correct");
+    let answer = message.toLowerCase();
+    if (answer == newData[0].list[0].word) {
       var correct = "correct";
-      io.emit("correct", correct);
+      io.emit("correct", message);
       // socket.on("correct", (correct) => {
       //   console.log(correct);
 
       //   io.emit("correct", correct);
       // });
+    } else {
+      io.emit("message", message);
     }
   });
 
