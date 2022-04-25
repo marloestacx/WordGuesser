@@ -4,10 +4,14 @@ let input = document.querySelector("input");
 let amounts = document.querySelector("p");
 var connectCounter = 0;
 
+let person = prompt("Please enter your name:", "");
+
+console.log(person);
+
 document.querySelector("form").addEventListener("submit", (event) => {
   event.preventDefault();
   if (input.value) {
-    socket.emit("message", input.value);
+    socket.emit("message", person + ": " + input.value);
     input.value = "";
   }
 });
@@ -25,6 +29,8 @@ socket.on("correct", (correct) => {
   );
   console.log(correct); // world
 });
+
+socket.emit("create", "room1");
 
 // socket.on("userConnected", (connectCounter) => {
 //   console.log("test");

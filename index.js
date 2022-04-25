@@ -12,6 +12,7 @@ var connectCounter = 0;
 app.set("view engine", "ejs");
 
 app.use(express.static(path.resolve("public")));
+
 // app.get("/", (req, res) => {
 //   res.render("chat", { data: connectCounter });
 // });
@@ -43,6 +44,13 @@ app.get("/", (req, res) => {
 });
 
 io.on("connection", (socket) => {
+  //create room
+  socket.on("create", function (room) {
+    socket.join(room);
+
+    console.log(room);
+  });
+
   console.log("a user connected");
   connectCounter++;
 
