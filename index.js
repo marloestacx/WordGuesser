@@ -16,6 +16,8 @@ app.use(express.static(path.resolve("public")));
 //   "https://mashape-community-urban-dictionary.p.rapidapi.com/define?term=dog";
 const url = "https://api.urbandictionary.com/v0/random";
 
+let users = [];
+
 const options = {
   method: "GET",
   headers: {
@@ -25,22 +27,11 @@ const options = {
 };
 
 let correctAnswer = [];
-
+const usersBySocketId = {};
 // home page
 app.get("/", (req, res) => {
   res.render("home", {});
 });
-// app.get("/", (req, res) => {
-//   fetch(url, options)
-//     .then((response) => response.json())
-//     .then((data) => {
-//       //sort on definition with most thumbs up
-//       data.list.sort(({ thumbs_up: a }, { thumbs_up: b }) => b - a);
-//       newData.push(data);
-//       res.render("home", { data: data.list[0].definition });
-//     })
-//     .catch((err) => res.send(err));
-// });
 
 io.on("connection", (socket) => {
   //create room
@@ -50,18 +41,11 @@ io.on("connection", (socket) => {
 
   console.log("a user connected");
 
-  // io.emit("online");
-
-  // socket.on("register", function (name) {
-  //   usernames[socket.id] = name;
-
-  //   console.log(name);
-  // });
-
   socket.on("newDefinition", () => {
     fetch(url, options)
       .then((res) => res.json())
       .then((data) => {
+        // get random definition
         let answer = data.list[Math.floor(Math.random() * data.list.length)];
         correctAnswer.push(answer);
         io.emit("newDefinition", answer);
@@ -70,14 +54,14 @@ io.on("connection", (socket) => {
   });
 
   socket.on("message", (message) => {
-    // if word is guessed correct
-    let answer = message.toLowerCase();
-
-    console.log(correctAnswer);
-
+    // console.log(message);
+    // if word doesn't exist send message
     if (correctAnswer.length == 0) {
       io.emit("message", message);
     } else {
+      console.log(message);
+      // if word is guessed correct
+      let answer = message.message.toLowerCase();
       if (answer == correctAnswer[0].word.toLowerCase()) {
         io.emit("correct", message);
 
@@ -87,6 +71,11 @@ io.on("connection", (socket) => {
         io.emit("message", message);
       }
     }
+  });
+
+  socket.on("register username", (username) => {
+    usersBySocketId[socket.id] = username;
+    io.emit("users", { users: Object.values(usersBySocketId) });
   });
 
   socket.on("disconnect", () => {

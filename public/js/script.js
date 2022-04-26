@@ -4,14 +4,27 @@ let online = document.querySelector("section h3");
 let input = document.querySelector("input");
 var connectCounter = 0;
 
-let person = prompt("Please enter your name:", "");
-let users = [];
-console.log(person);
+let username = prompt("Please enter your name:", "");
+
+// show online users
+const usersEl = document.querySelector("#users");
+socket.on("users", ({ users }) => {
+  usersEl.innerHTML = "";
+
+  for (const user of users) {
+    const li = document.createElement("li");
+    li.textContent = user;
+    // usersEl.appendChild(li);
+  }
+});
 
 document.querySelector("form").addEventListener("submit", (event) => {
   event.preventDefault();
   if (input.value) {
-    socket.emit("message", input.value);
+    socket.emit("message", {
+      username,
+      message: input.value,
+    });
     input.value = "";
   }
 });
@@ -20,10 +33,15 @@ function newDefinition() {
   socket.emit("newDefinition");
 }
 
+socket.on("connect", () => {
+  socket.emit("register username", username);
+});
+
 socket.on("message", (message) => {
+  console.log(message);
   messages.appendChild(
     Object.assign(document.createElement("li"), {
-      textContent: person + ": " + message,
+      textContent: message.username + ": " + message.message,
     })
   );
   messages.scrollTop = messages.scrollHeight;
@@ -31,9 +49,10 @@ socket.on("message", (message) => {
 
 //correct answer
 socket.on("correct", (correct) => {
+  console.log(correct);
   messages.appendChild(
     Object.assign(document.createElement("li"), {
-      textContent: person + ": " + correct,
+      textContent: correct.username + ": " + correct.message,
       className: "answer",
     })
   );
@@ -43,7 +62,6 @@ socket.on("correct", (correct) => {
       className: "answer",
     })
   );
-  console.log(correct);
 });
 
 socket.emit("create", "room1");
