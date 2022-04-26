@@ -24,7 +24,7 @@ const options = {
   },
 };
 
-let newData = [];
+let correctAnswer = [];
 
 // home page
 app.get("/", (req, res) => {
@@ -63,24 +63,29 @@ io.on("connection", (socket) => {
       .then((res) => res.json())
       .then((data) => {
         let answer = data.list[Math.floor(Math.random() * data.list.length)];
-        newData.push(answer);
+        correctAnswer.push(answer);
         io.emit("newDefinition", answer);
       })
       .catch((err) => console.error("error:" + err));
   });
 
   socket.on("message", (message) => {
-    // io.emit("message", message);
-
     // if word is guessed correct
     let answer = message.toLowerCase();
-    console.log(newData[0].word);
-    console.log(answer);
-    if (answer == newData[0].word.toLowerCase()) {
-      io.emit("correct", message);
-      newData.pop();
-    } else {
+
+    console.log(correctAnswer);
+
+    if (correctAnswer.length == 0) {
       io.emit("message", message);
+    } else {
+      if (answer == correctAnswer[0].word.toLowerCase()) {
+        io.emit("correct", message);
+
+        // delete item from array
+        correctAnswer.pop();
+      } else {
+        io.emit("message", message);
+      }
     }
   });
 
