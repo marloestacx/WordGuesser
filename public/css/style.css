@@ -26,6 +26,8 @@ h1 {
 
 ul {
   padding: 0;
+  max-height: 15em;
+  overflow: scroll;
 }
 
 /* li:nth-of-type(even) {
