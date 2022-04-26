@@ -63,23 +63,25 @@ io.on("connection", (socket) => {
       .then((res) => res.json())
       .then((data) => {
         let answer = data.list[Math.floor(Math.random() * data.list.length)];
+        newData.push(answer);
         io.emit("newDefinition", answer);
       })
       .catch((err) => console.error("error:" + err));
   });
 
   socket.on("message", (message) => {
-    console.log(message);
+    // io.emit("message", message);
 
-    io.emit("message", message);
-
-    //if word is guessed correct
-    // let answer = message.toLowerCase();
-    // if (answer == newData[0].list[0].word) {
-    //   io.emit("correct", message);
-    // } else {
-    //   io.emit("message", message);
-    // }
+    // if word is guessed correct
+    let answer = message.toLowerCase();
+    console.log(newData[0].word);
+    console.log(answer);
+    if (answer == newData[0].word.toLowerCase()) {
+      io.emit("correct", message);
+      newData.pop();
+    } else {
+      io.emit("message", message);
+    }
   });
 
   socket.on("disconnect", () => {
