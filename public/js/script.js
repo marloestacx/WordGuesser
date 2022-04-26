@@ -1,11 +1,11 @@
 let socket = io();
 let messages = document.querySelector("section ul");
+let online = document.querySelector("section h3");
 let input = document.querySelector("input");
-let amounts = document.querySelector("p");
 var connectCounter = 0;
 
 let person = prompt("Please enter your name:", "");
-
+let users = [];
 console.log(person);
 
 document.querySelector("form").addEventListener("submit", (event) => {
@@ -15,6 +15,10 @@ document.querySelector("form").addEventListener("submit", (event) => {
     input.value = "";
   }
 });
+
+function newDefinition() {
+  socket.emit("newDefinition");
+}
 
 socket.on("message", (message) => {
   messages.appendChild(
@@ -44,9 +48,21 @@ socket.on("correct", (correct) => {
 
 socket.emit("create", "room1");
 
-// socket.on("userConnected", (connectCounter) => {
-//   console.log("test");
-//   amounts.appendChild(
-//     Object.assign(document.createElement("p"), { textContent: connectCounter })
+socket.on("newDefinition", (newDefinition) => {
+  console.log(newDefinition);
+
+  document.getElementById("definition").innerHTML = newDefinition.definition;
+});
+
+// socket.emit("login", { username: person });
+
+// socket.emit("online", person);
+
+// socket.on("online", () => {
+//   console.log("test" + person);
+//   online.appendChild(
+//     Object.assign(document.createElement("p"), {
+//       textContent: person,
+//     })
 //   );
 // });
