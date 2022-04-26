@@ -1,5 +1,5 @@
 let socket = io();
-let messages = document.querySelector("section ul");
+let messages = document.querySelector("#chat");
 let online = document.querySelector("section h3");
 let input = document.querySelector("input");
 var connectCounter = 0;
