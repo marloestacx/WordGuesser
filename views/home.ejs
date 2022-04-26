@@ -7,21 +7,24 @@
   <body>
     <main>
       <h1>Guess the word</h1>
-      <section id="game">
-        <h2>Definition</h2>
-        <h2 id="definition"></h2>
-        <button onclick="newDefinition()"><span>New word</span></button>
-      </section>
-      <section>
-        <h3>Online</h3>
-      </section>
-      <section>
-        <ul></ul>
-        <form>
-          <input type="text" autocomplete="off" />
-          <button><span>Send</span></button>
-        </form>
-      </section>
+      <div>
+        <section id="game">
+          <h2>Definition</h2>
+          <h2 id="definition"></h2>
+          <button onclick="newDefinition()"><span>New word</span></button>
+        </section>
+        <section>
+          <h3>Online</h3>
+          <ul id="users"></ul>
+        </section>
+        <section>
+          <ul id="chat"></ul>
+          <form>
+            <input type="text" autocomplete="off" />
+            <button><span>Send</span></button>
+          </form>
+        </section>
+      </div>
     </main>
 
     <script src="/socket.io/socket.io.js"></script>
