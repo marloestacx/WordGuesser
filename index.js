@@ -27,7 +27,7 @@ const options = {
 };
 
 let correctAnswer = [];
-const usersBySocketId = {};
+let usersBySocketId = [];
 // home page
 app.get("/", (req, res) => {
   res.render("home", {});
@@ -59,7 +59,7 @@ io.on("connection", (socket) => {
     if (correctAnswer.length == 0) {
       io.emit("message", message);
     } else {
-      console.log(message);
+      console.log(message.message);
       // if word is guessed correct
       let answer = message.message.toLowerCase();
       if (answer == correctAnswer[0].word.toLowerCase()) {
@@ -72,7 +72,7 @@ io.on("connection", (socket) => {
       }
     }
   });
-
+  console.log(usersBySocketId);
   socket.on("register username", (username) => {
     usersBySocketId[socket.id] = username;
     io.emit("users", { users: Object.values(usersBySocketId) });
@@ -80,6 +80,15 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     console.log("user disconnected");
+
+    console.log(socket.id);
+    usersBySocketId.filter(function (e) {
+      return e !== socket.id;
+    });
+
+    usersBySocketId.splice(socket.id, 1);
+
+    console.log(usersBySocketId);
   });
 });
 

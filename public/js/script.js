@@ -14,7 +14,7 @@ socket.on("users", ({ users }) => {
   for (const user of users) {
     const li = document.createElement("li");
     li.textContent = user;
-    // usersEl.appendChild(li);
+    usersEl.appendChild(li);
   }
 });
 
