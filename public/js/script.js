@@ -8,12 +8,30 @@ let username = prompt("Please enter your name:", "");
 
 // show online users
 const usersEl = document.querySelector("#users");
-socket.on("users", ({ users }) => {
+// socket.on("users", ({ users }) => {
+//   usersEl.innerHTML = "";
+
+//   for (const user of users) {
+//     const li = document.createElement("li");
+//     li.textContent = user;
+//     li.id = user;
+//     usersEl.appendChild(li);
+//   }
+// });
+
+socket.emit("login", { userId: username });
+
+socket.on("online", (online) => {
+  console.log("test online");
+  // socket.emit("login", { userId: username });
+  console.log(online);
+
   usersEl.innerHTML = "";
 
-  for (const user of users) {
+  for (const user of online) {
     const li = document.createElement("li");
     li.textContent = user;
+    li.id = user;
     usersEl.appendChild(li);
   }
 });
@@ -34,6 +52,7 @@ function newDefinition() {
 }
 
 socket.on("connect", () => {
+  // socket.emit("login", { userId: username });
   socket.emit("register username", username);
 });
 
@@ -70,6 +89,10 @@ socket.on("newDefinition", (newDefinition) => {
   console.log(newDefinition);
 
   document.getElementById("definition").innerHTML = newDefinition.definition;
+});
+
+socket.on("disconnect", () => {
+  console.log("disc");
 });
 
 // socket.emit("login", { username: person });

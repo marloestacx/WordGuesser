@@ -16,8 +16,6 @@ app.use(express.static(path.resolve("public")));
 //   "https://mashape-community-urban-dictionary.p.rapidapi.com/define?term=dog";
 const url = "https://api.urbandictionary.com/v0/random";
 
-let users = [];
-
 const options = {
   method: "GET",
   headers: {
@@ -28,6 +26,8 @@ const options = {
 
 let correctAnswer = [];
 let usersBySocketId = [];
+let names = [];
+const users = {};
 // home page
 app.get("/", (req, res) => {
   res.render("home", {});
@@ -37,6 +37,13 @@ io.on("connection", (socket) => {
   //create room
   socket.on("create", function (room) {
     socket.join(room);
+  });
+
+  //create username
+  socket.on("login", function (data) {
+    console.log("a user " + data.userId + " connected");
+    // saving userId to object with socket ID
+    users[socket.id] = data.userId;
   });
 
   console.log("a user connected");
@@ -72,23 +79,32 @@ io.on("connection", (socket) => {
       }
     }
   });
-  console.log(usersBySocketId);
+
   socket.on("register username", (username) => {
-    usersBySocketId[socket.id] = username;
-    io.emit("users", { users: Object.values(usersBySocketId) });
+    names.push(username);
+    io.emit("online", names);
+    //create username
+    // usersBySocketId[socket.id] = username;
+    // io.emit("users", { users: Object.values(usersBySocketId) });
+
+    // console.log("name" + names);
   });
 
   socket.on("disconnect", () => {
-    console.log("user disconnected");
+    console.log("user " + users[socket.id] + " disconnected");
+    // remove saved socket from users object
 
-    console.log(socket.id);
-    usersBySocketId.filter(function (e) {
-      return e !== socket.id;
+    // names.filter((e) => e !== users[socket.id]);
+    names = names.filter(function (e) {
+      return e !== users[socket.id];
     });
 
-    usersBySocketId.splice(socket.id, 1);
+    io.emit("online", names);
 
-    console.log(usersBySocketId);
+    console.log(users[socket.id]);
+    // console.log(newNames);
+    console.log(names);
+    delete users[socket.id];
   });
 });
 
