@@ -16,17 +16,19 @@ View art right from your phone
 ## Concept
 The concept is an online woord guesser game. You see a definition on the screen and have the guess the word by typing in the chat. 
 
-![Schermafbeelding 2022-05-10 om 13 02 53](https://user-images.githubusercontent.com/24413936/167616068-f426e1a2-3e7c-41e7-bebd-b2e1556c9a3e.png)
+![IMG_3536](https://user-images.githubusercontent.com/24413936/167620531-f1f166e1-d407-4250-8f23-b47b71b857bb.jpg)
 
 
 ## Features
 In the game you can guess the word by reading the defintion. You can see who's online and chat with eachother while you try to guess the correct word.
 
+![Schermafbeelding 2022-05-10 om 13 02 53](https://user-images.githubusercontent.com/24413936/167616068-f426e1a2-3e7c-41e7-bebd-b2e1556c9a3e.png)
+
 ## Installation 
 Clone this repository
 
 ```
-https://github.com/marloestacx/pwa-rijksmuseum.git
+https://github.com/marloestacx/WordGuesser.git
 ```
 
 Install the packages
@@ -50,7 +52,9 @@ The website can be viewed live on [https://wordguesser-rtw.herokuapp.com](https:
 ## Data Life Cycle
 
 ## API
-Response 
+For this project I use the [Urban Dictionary API](https://rapidapi.com/community/api/urban-dictionary). This API stores all definitions which are hosted on the Urban Dictionary website.
+
+### Response 
 
 ```js
  list: [
@@ -72,33 +76,32 @@ Response
    ]
 ```
 
-## Critical Rendering Path
-I've implemented some optimizations to make the app even faster and better. 
-
-- Minify HTML and CSS 
-- Use compression 
-- Caching headers
-- Don't use unnecessary code
-- Use responsive images
-
-I didn't use CSS font-display because I don't use an external font and don't use JavaScript on the client side since it's all server side now. 
-
 
 ## Checklist
-- [x] Show art
-- [x] Search art
-- [x] Add search hash
-- [x] Art detail page
-- [ ] Sort alphabetical
+### Must have
+- [x] Chat function
+- [x] See a definition
+- [x] See if guess is correct
+- [x] Get new definition
+
+### Should have
+- [x] See when someone's online
+- [x] See when someone goes offline 
+
+### Could have
+- [ ] Get hint for correct answer
+
+### Would have
+- [ ] Points for correct guesses
+
 
 ## Sources
-* [Rijksmsueum API](https://data.rijksmuseum.nl/object-metadata/api/)
-* [Ejs](https://www.npmjs.com/package/ejs)
-* [Compression](http://expressjs.com/en/resources/middleware/compression.html)
-* [Caching headers](https://regbrain.com/article/cache-headers-express-js)
+* [Urban Dictionary API](https://rapidapi.com/community/api/urban-dictionary)
+* [Socket.io](http://socket.io)
+
 
 ## License
-Usage is provided under the [MIT License](https://github.com/marloestacx/rijksmuseum/blob/main/LICENSE). See LICENSE for the full details.
+Usage is provided under the [MIT License](https://github.com/marloestacx/WordGuesser/blob/main/LICENSE). See LICENSE for the full details.
 
 <!-- Add a link to your live demo in Github Pages 🌐-->
 
