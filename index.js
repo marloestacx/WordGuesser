@@ -64,15 +64,16 @@ io.on("connection", (socket) => {
   });
 
   socket.on("message", (message) => {
+    console.log(correctAnswer[0]);
     // if word doesn't exist send message
     if (correctAnswer.length == 0) {
       io.emit("message", message);
     } else {
       // if word is guessed correct
       let answer = message.message.toLowerCase();
+      console.log(correctAnswer[0].word.toLowerCase());
       if (answer == correctAnswer[0].word.toLowerCase()) {
         io.emit("correct", message);
-
         // delete item from array
         correctAnswer.pop();
       } else {
