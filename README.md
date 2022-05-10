@@ -1,32 +1,35 @@
 # Word Guesser
-View art right from your phone
+Guess the right word with your friends or strangers
 
 ## Table of contents
-* [Concept](https://github.com/marloestacx/pwa-rijksmuseum#concept)
-* [Features](https://github.com/marloestacx/pwa-rijksmuseum#features)
-* [Installation](https://github.com/marloestacx/pwa-rijksmuseum#installation)
-* [Live Demo](https://github.com/marloestacx/pwa-rijksmuseum#live-demo)
-* [Activity Diagram](https://github.com/marloestacx/pwa-rijksmuseum#activity-diagram)
-* [Client side vs Server side](https://github.com/marloestacx/pwa-rijksmuseum#client-side-vs-server-side)
-* [Critical Rendering Path](https://github.com/marloestacx/pwa-rijksmuseum#critical-rendering-path)
-* [Checklist](https://github.com/marloestacx/pwa-rijksmuseum#checklist)
-* [Sources](https://github.com/marloestacx/pwa-rijksmuseum#sources)
-* [License](https://github.com/marloestacx/pwa-rijksmuseum#license)
+* [Concept](https://github.com/marloestacx/WordGuesser#concept)
+* [Features](https://github.com/marloestacx/WordGuesser#features)
+* [Installation](https://github.com/marloestacx/WordGuesser#installation)
+* [Live Demo](https://github.com/marloestacx/WordGuesser#live-demo)
+* [Datamodel](https://github.com/marloestacx/WordGuesser#datamodel)
+* [Data Life Cycle](https://github.com/marloestacx/WordGuesser#data-life-cycle)
+* [API](https://github.com/marloestacx/WordGuesser#API)
+* [Real-Time Events](https://github.com/marloestacx/WordGuesser#Real-Time-Events)
+* [Checklist](https://github.com/marloestacx/WordGuesser#checklist)
+* [Sources](https://github.com/marloestacx/WordGuesser#sources)
+* [License](https://github.com/marloestacx/WordGuesser#license)
 
 ## Concept
-The concept is an online woord guesser game. You see a definition on the screen and have the guess the word by typing in the chat. 
+The concept is an online word guesser game. You see a definition on the screen and have to guess the word by typing in the chat. 
 
-![Schermafbeelding 2022-05-10 om 13 02 53](https://user-images.githubusercontent.com/24413936/167616068-f426e1a2-3e7c-41e7-bebd-b2e1556c9a3e.png)
+![IMG_3536](https://user-images.githubusercontent.com/24413936/167620531-f1f166e1-d407-4250-8f23-b47b71b857bb.jpg)
 
 
 ## Features
-In the game you can guess the word by reading the defintion. You can see who's online and chat with eachother while you try to guess the correct word.
+In the game, you can guess the word by reading the definition. You can see who's online and chat with each other while you try to guess the correct word.
+
+![Schermafbeelding 2022-05-10 om 13 02 53](https://user-images.githubusercontent.com/24413936/167616068-f426e1a2-3e7c-41e7-bebd-b2e1556c9a3e.png)
 
 ## Installation 
 Clone this repository
 
 ```
-https://github.com/marloestacx/pwa-rijksmuseum.git
+https://github.com/marloestacx/WordGuesser.git
 ```
 
 Install the packages
@@ -49,8 +52,13 @@ The website can be viewed live on [https://wordguesser-rtw.herokuapp.com](https:
 
 ## Data Life Cycle
 
+![datalifecycle](https://user-images.githubusercontent.com/24413936/167631606-04a3635a-95a0-4f2d-8169-aca7f1bba317.png)
+
+
 ## API
-Response 
+For this project, I use the [Urban Dictionary API](https://rapidapi.com/community/api/urban-dictionary). This API stores all definitions which are hosted on the Urban Dictionary website.
+
+### Response 
 
 ```js
  list: [
@@ -72,33 +80,50 @@ Response
    ]
 ```
 
-## Critical Rendering Path
-I've implemented some optimizations to make the app even faster and better. 
+## Real-Time Events
 
-- Minify HTML and CSS 
-- Use compression 
-- Caching headers
-- Don't use unnecessary code
-- Use responsive images
+### registerName
+This event is triggered by the connection event. On the server side, the username gets pushed into the usernames array. This will trigger the online event and show all online users. 
 
-I didn't use CSS font-display because I don't use an external font and don't use JavaScript on the client side since it's all server side now. 
+
+### newDefinition
+This event is triggered when someone clicks on the "new definition" button. On the server side, a new word get fetched from the API. Because the API gets 10 words on each call, it picks one of the words and puts this in an array. If the word is guessed correctly, this word gets deleted. On the client side, this definition get's shown to all users. 
+
+### Message
+This event is triggered when a message is sent. The event checks on the server side if the message has the correct answer, if this is true it will send an extra message that this is the correct answer and give the answer a green background. If it is not the correct answer, it will just show it as a standard message. 
+
+### Disconnect
+When a user disconnects, this user gets removed from usernames array. This triggers the online user event which will then show the current online users and the user that just went online will be no longer visible. 
 
 
 ## Checklist
-- [x] Show art
-- [x] Search art
-- [x] Add search hash
-- [x] Art detail page
-- [ ] Sort alphabetical
+### Must have
+- [x] Chat function
+- [x] See a definition
+- [x] See if guess is correct
+- [x] Get new definition
+
+### Should have
+- [x] See when someone's online
+- [x] See when someone goes offline 
+- [x] See who sent message
+
+### Could have
+- [ ] Get hint for correct answer
+- [ ] Multiple rooms
+
+### Would have
+- [ ] Points for correct guesses
+- [ ] Message time stamps
+
 
 ## Sources
-* [Rijksmsueum API](https://data.rijksmuseum.nl/object-metadata/api/)
-* [Ejs](https://www.npmjs.com/package/ejs)
-* [Compression](http://expressjs.com/en/resources/middleware/compression.html)
-* [Caching headers](https://regbrain.com/article/cache-headers-express-js)
+* [Urban Dictionary API](https://rapidapi.com/community/api/urban-dictionary)
+* [Socket.io](http://socket.io)
+
 
 ## License
-Usage is provided under the [MIT License](https://github.com/marloestacx/rijksmuseum/blob/main/LICENSE). See LICENSE for the full details.
+Usage is provided under the [MIT License](https://github.com/marloestacx/WordGuesser/blob/main/LICENSE). See LICENSE for the full details.
 
 <!-- Add a link to your live demo in Github Pages 🌐-->
 
