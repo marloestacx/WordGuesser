@@ -51,6 +51,9 @@ The website can be viewed live on [https://wordguesser-rtw.herokuapp.com](https:
 
 ## Data Life Cycle
 
+![datalifecycle](https://user-images.githubusercontent.com/24413936/167631152-ebed39ed-d490-4c64-92a0-9264703137c3.png)
+
+
 ## API
 For this project I use the [Urban Dictionary API](https://rapidapi.com/community/api/urban-dictionary). This API stores all definitions which are hosted on the Urban Dictionary website.
 
