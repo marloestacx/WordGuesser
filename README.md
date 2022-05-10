@@ -1,17 +1,17 @@
 # Word Guesser
-View art right from your phone
+Guess the right word with your friends or strangers
 
 ## Table of contents
-* [Concept](https://github.com/marloestacx/pwa-rijksmuseum#concept)
-* [Features](https://github.com/marloestacx/pwa-rijksmuseum#features)
-* [Installation](https://github.com/marloestacx/pwa-rijksmuseum#installation)
-* [Live Demo](https://github.com/marloestacx/pwa-rijksmuseum#live-demo)
-* [Activity Diagram](https://github.com/marloestacx/pwa-rijksmuseum#activity-diagram)
-* [Client side vs Server side](https://github.com/marloestacx/pwa-rijksmuseum#client-side-vs-server-side)
-* [Critical Rendering Path](https://github.com/marloestacx/pwa-rijksmuseum#critical-rendering-path)
-* [Checklist](https://github.com/marloestacx/pwa-rijksmuseum#checklist)
-* [Sources](https://github.com/marloestacx/pwa-rijksmuseum#sources)
-* [License](https://github.com/marloestacx/pwa-rijksmuseum#license)
+* [Concept](https://github.com/marloestacx/WordGuesser#concept)
+* [Features](https://github.com/marloestacx/WordGuesser#features)
+* [Installation](https://github.com/marloestacx/WordGuesser#installation)
+* [Live Demo](https://github.com/marloestacx/WordGuesser#live-demo)
+* [Datamodel](https://github.com/marloestacx/WordGuesser#datamodel)
+* [Data Life Cycle](https://github.com/marloestacx/WordGuesser#data-life-cycle)
+* [API](https://github.com/marloestacx/WordGuesser#API)
+* [Checklist](https://github.com/marloestacx/WordGuesser#checklist)
+* [Sources](https://github.com/marloestacx/WordGuesser#sources)
+* [License](https://github.com/marloestacx/WordGuesser#license)
 
 ## Concept
 The concept is an online woord guesser game. You see a definition on the screen and have the guess the word by typing in the chat. 
