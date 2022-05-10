@@ -40,7 +40,7 @@ npm start
 ```
 
 ## Live Demo
-The website can be viewed live on [https://pwa-rijksmuseum.herokuapp.com](https://pwa-rijksmuseum.herokuapp.com)
+The website can be viewed live on [https://wordguesser-rtw.herokuapp.com](https://wordguesser-rtw.herokuapp.com)
 
 ## Datamodel
 
