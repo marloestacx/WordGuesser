@@ -51,7 +51,7 @@ The website can be viewed live on [https://wordguesser-rtw.herokuapp.com](https:
 
 ## Data Life Cycle
 
-![datalifecycle](https://user-images.githubusercontent.com/24413936/167631152-ebed39ed-d490-4c64-92a0-9264703137c3.png)
+![datalifecycle](https://user-images.githubusercontent.com/24413936/167631606-04a3635a-95a0-4f2d-8169-aca7f1bba317.png)
 
 
 ## API
