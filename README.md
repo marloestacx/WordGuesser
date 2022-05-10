@@ -1,4 +1,4 @@
-# Rijksmuseum
+# Word Guesser
 View art right from your phone
 
 ## Table of contents
@@ -14,25 +14,13 @@ View art right from your phone
 * [License](https://github.com/marloestacx/pwa-rijksmuseum#license)
 
 ## Concept
-The concept is a web app where you can view art from the Rijksmuseum, you can search for art by using the search bar. When you click on the art, you get some extra information about that art piece.
+The concept is an online woord guesser game. You see a definition on the screen and have the guess the word by typing in the chat. 
 
-Entree
-
-<img src="https://user-images.githubusercontent.com/24413936/161765927-e7f81802-90f0-405c-9865-b27e10b70aae.png" width="30%"> 
-
-
-Search
-
-<img src="https://user-images.githubusercontent.com/24413936/161765937-fe15230c-41ce-46be-81ba-3b35a5186891.png" width="30%"> 
-
-
-Detail
-
-<img src="https://user-images.githubusercontent.com/24413936/161736974-ecf4e9c4-092d-4277-b247-b2501a5c63e6.png" width="30%"> 
+![Schermafbeelding 2022-05-10 om 13 02 53](https://user-images.githubusercontent.com/24413936/167616068-f426e1a2-3e7c-41e7-bebd-b2e1556c9a3e.png)
 
 
 ## Features
-On the web app, you can view the art. At the top is a search bar which you can search art with, you can search the art by name or the person who made it. When you click on the art, you get a detail page with a description of the art and some extra information about the art. 
+In the game you can guess the word by reading the defintion. You can see who's online and chat with eachother while you try to guess the correct word.
 
 ## Installation 
 Clone this repository
@@ -54,9 +42,12 @@ npm start
 ## Live Demo
 The website can be viewed live on [https://pwa-rijksmuseum.herokuapp.com](https://pwa-rijksmuseum.herokuapp.com)
 
-## Activity Diagram
+## Datamodel
 
-![ad2](https://user-images.githubusercontent.com/24413936/161734829-20f088bb-0342-4bfc-b5c3-fb29df16afbe.png)
+![datamodel](https://user-images.githubusercontent.com/24413936/167616269-1ed3fa34-f26b-4407-8b62-9657b92b68a6.png)
+
+
+## Data Life Cycle
 
 ## API
 Response 
