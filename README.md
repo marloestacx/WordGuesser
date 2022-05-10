@@ -58,8 +58,13 @@ The website can be viewed live on [https://wordguesser-rtw.herokuapp.com](https:
 ## API
 For this project, I use the [Urban Dictionary API](https://rapidapi.com/community/api/urban-dictionary). This API stores all definitions which are hosted on the Urban Dictionary website.
 
-### Response 
+### What I used
+From this API I use the **definition** and **word**
 
+### Key
+I used [RapidAPI](https://rapidapi.com/community/api/urban-dictionary) to get a key for this project. RapidAPI will give you a code snippet which you can use in your project. 
+
+### Response 
 ```js
  list: [
     {
@@ -97,6 +102,7 @@ When a user disconnects, this user gets removed from usernames array. This trigg
 
 
 ## Checklist
+
 ### Must have
 - [x] Chat function
 - [x] See a definition
