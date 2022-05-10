@@ -2,37 +2,23 @@ let socket = io();
 let messages = document.querySelector("#chat");
 let online = document.querySelector("section h3");
 let input = document.querySelector("input");
-var connectCounter = 0;
 
 let username = prompt("Please enter your name:", "");
-
-// show online users
 const usersEl = document.querySelector("#users");
-// socket.on("users", ({ users }) => {
-//   usersEl.innerHTML = "";
 
-//   for (const user of users) {
-//     const li = document.createElement("li");
-//     li.textContent = user;
-//     li.id = user;
-//     usersEl.appendChild(li);
-//   }
-// });
-
+//give usernam to socket
 socket.emit("login", { userId: username });
 
+// show who's online
 socket.on("online", (online) => {
-  console.log("test online");
-  // socket.emit("login", { userId: username });
-  console.log(online);
-
   usersEl.innerHTML = "";
 
   for (const user of online) {
-    const li = document.createElement("li");
-    li.textContent = user;
-    li.id = user;
-    usersEl.appendChild(li);
+    usersEl.appendChild(
+      Object.assign(document.createElement("li"), {
+        textContent: user,
+      })
+    );
   }
 });
 
@@ -47,17 +33,12 @@ document.querySelector("form").addEventListener("submit", (event) => {
   }
 });
 
-function newDefinition() {
-  socket.emit("newDefinition");
-}
-
+// get username
 socket.on("connect", () => {
-  // socket.emit("login", { userId: username });
-  socket.emit("register username", username);
+  socket.emit("registerName", username);
 });
 
 socket.on("message", (message) => {
-  console.log(message);
   messages.appendChild(
     Object.assign(document.createElement("li"), {
       textContent: message.username + ": " + message.message,
@@ -66,9 +47,8 @@ socket.on("message", (message) => {
   messages.scrollTop = messages.scrollHeight;
 });
 
-//correct answer
+// correct answer
 socket.on("correct", (correct) => {
-  console.log(correct);
   messages.appendChild(
     Object.assign(document.createElement("li"), {
       textContent: correct.username + ": " + correct.message,
@@ -85,25 +65,14 @@ socket.on("correct", (correct) => {
 
 socket.emit("create", "room1");
 
+function newDefinition() {
+  socket.emit("newDefinition");
+}
+
 socket.on("newDefinition", (newDefinition) => {
   console.log(newDefinition);
 
   document.getElementById("definition").innerHTML = newDefinition.definition;
 });
 
-socket.on("disconnect", () => {
-  console.log("disc");
-});
-
-// socket.emit("login", { username: person });
-
-// socket.emit("online", person);
-
-// socket.on("online", () => {
-//   console.log("test" + person);
-//   online.appendChild(
-//     Object.assign(document.createElement("p"), {
-//       textContent: person,
-//     })
-//   );
-// });
+socket.on("disconnect", () => {});
