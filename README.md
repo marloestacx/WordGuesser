@@ -90,12 +90,15 @@ For this project I use the [Urban Dictionary API](https://rapidapi.com/community
 ### Should have
 - [x] See when someone's online
 - [x] See when someone goes offline 
+- [x] See who sent message
 
 ### Could have
 - [ ] Get hint for correct answer
+- [ ] Multiple rooms
 
 ### Would have
 - [ ] Points for correct guesses
+- [ ] Message time stamps
 
 
 ## Sources
