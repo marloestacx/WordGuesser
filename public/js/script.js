@@ -70,8 +70,6 @@ function newDefinition() {
 }
 
 socket.on("newDefinition", (newDefinition) => {
-  console.log(newDefinition);
-
   document.getElementById("definition").innerHTML = newDefinition.definition;
 });
 
