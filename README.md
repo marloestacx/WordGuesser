@@ -15,13 +15,13 @@ Guess the right word with your friends or strangers
 * [License](https://github.com/marloestacx/WordGuesser#license)
 
 ## Concept
-The concept is an online woord guesser game. You see a definition on the screen and have the guess the word by typing in the chat. 
+The concept is an online word guesser game. You see a definition on the screen and have to guess the word by typing in the chat. 
 
 ![IMG_3536](https://user-images.githubusercontent.com/24413936/167620531-f1f166e1-d407-4250-8f23-b47b71b857bb.jpg)
 
 
 ## Features
-In the game you can guess the word by reading the defintion. You can see who's online and chat with eachother while you try to guess the correct word.
+In the game, you can guess the word by reading the definition. You can see who's online and chat with each other while you try to guess the correct word.
 
 ![Schermafbeelding 2022-05-10 om 13 02 53](https://user-images.githubusercontent.com/24413936/167616068-f426e1a2-3e7c-41e7-bebd-b2e1556c9a3e.png)
 
@@ -56,7 +56,7 @@ The website can be viewed live on [https://wordguesser-rtw.herokuapp.com](https:
 
 
 ## API
-For this project I use the [Urban Dictionary API](https://rapidapi.com/community/api/urban-dictionary). This API stores all definitions which are hosted on the Urban Dictionary website.
+For this project, I use the [Urban Dictionary API](https://rapidapi.com/community/api/urban-dictionary). This API stores all definitions which are hosted on the Urban Dictionary website.
 
 ### Response 
 
@@ -83,16 +83,17 @@ For this project I use the [Urban Dictionary API](https://rapidapi.com/community
 ## Real-Time Events
 
 ### registerName
-This event is triggered by the connection event. On the server side the username get's pushed into the usernames array. This will trigger the online event and show all online users. 
+This event is triggered by the connection event. On the server side, the username gets pushed into the usernames array. This will trigger the online event and show all online users. 
 
-### Message
-This event is triggerd when a message is sent. The event checks on the server side if the message has the correct answer, if this is true it will send an extra message that this is the correct answer and give the answer a green background. If it is not the correct answer it will just show it as a standard message. 
 
 ### newDefinition
-This event is triggerd when someone clicks on the "new definition" button. On the server side a new word get fetched from the API. Becuase the API get's 10 words on each call it picks one of the words and puts this in an array. If the word is guessed correctly this word get's deleted. On the client side this definition get's shown to all users. 
+This event is triggered when someone clicks on the "new definition" button. On the server side, a new word get fetched from the API. Because the API gets 10 words on each call, it picks one of the words and puts this in an array. If the word is guessed correctly, this word gets deleted. On the client side, this definition get's shown to all users. 
+
+### Message
+This event is triggered when a message is sent. The event checks on the server side if the message has the correct answer, if this is true it will send an extra message that this is the correct answer and give the answer a green background. If it is not the correct answer, it will just show it as a standard message. 
 
 ### Disconnect
-When an user disconnects this user get's removed from usernames array. This triggers the online user event which will then show the current online users and the user that just went online will be no longer visible. 
+When a user disconnects, this user gets removed from usernames array. This triggers the online user event which will then show the current online users and the user that just went online will be no longer visible. 
 
 
 ## Checklist
