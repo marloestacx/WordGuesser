@@ -12,8 +12,6 @@ app.set("view engine", "ejs");
 
 app.use(express.static(path.resolve("public")));
 
-// const url =
-//   "https://mashape-community-urban-dictionary.p.rapidapi.com/define?term=dog";
 const url = "https://api.urbandictionary.com/v0/random";
 
 const options = {
@@ -25,7 +23,6 @@ const options = {
 };
 
 let correctAnswer = [];
-let usersBySocketId = [];
 let names = [];
 const users = {};
 // home page
@@ -37,6 +34,12 @@ io.on("connection", (socket) => {
   //create room
   socket.on("create", function (room) {
     socket.join(room);
+  });
+
+  //get username push to array
+  socket.on("registerName", (username) => {
+    names.push(username);
+    io.emit("online", names);
   });
 
   //create username
@@ -61,12 +64,10 @@ io.on("connection", (socket) => {
   });
 
   socket.on("message", (message) => {
-    // console.log(message);
     // if word doesn't exist send message
     if (correctAnswer.length == 0) {
       io.emit("message", message);
     } else {
-      console.log(message.message);
       // if word is guessed correct
       let answer = message.message.toLowerCase();
       if (answer == correctAnswer[0].word.toLowerCase()) {
@@ -80,30 +81,16 @@ io.on("connection", (socket) => {
     }
   });
 
-  socket.on("register username", (username) => {
-    names.push(username);
-    io.emit("online", names);
-    //create username
-    // usersBySocketId[socket.id] = username;
-    // io.emit("users", { users: Object.values(usersBySocketId) });
-
-    // console.log("name" + names);
-  });
-
   socket.on("disconnect", () => {
     console.log("user " + users[socket.id] + " disconnected");
-    // remove saved socket from users object
 
-    // names.filter((e) => e !== users[socket.id]);
+    // filter disconnected user out of array
     names = names.filter(function (e) {
       return e !== users[socket.id];
     });
 
     io.emit("online", names);
-
-    console.log(users[socket.id]);
-    // console.log(newNames);
-    console.log(names);
+    // delete user
     delete users[socket.id];
   });
 });
