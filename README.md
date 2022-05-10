@@ -9,6 +9,7 @@ Guess the right word with your friends or strangers
 * [Datamodel](https://github.com/marloestacx/WordGuesser#datamodel)
 * [Data Life Cycle](https://github.com/marloestacx/WordGuesser#data-life-cycle)
 * [API](https://github.com/marloestacx/WordGuesser#API)
+* [Real-Time Events](https://github.com/marloestacx/WordGuesser#Real-Time-Events)
 * [Checklist](https://github.com/marloestacx/WordGuesser#checklist)
 * [Sources](https://github.com/marloestacx/WordGuesser#sources)
 * [License](https://github.com/marloestacx/WordGuesser#license)
@@ -78,6 +79,20 @@ For this project I use the [Urban Dictionary API](https://rapidapi.com/community
     }
    ]
 ```
+
+## Real-Time Events
+
+### registerName
+This event is triggered by the connection event. On the server side the username get's pushed into the usernames array. This will trigger the online event and show all online users. 
+
+### Message
+This event is triggerd when a message is sent. The event checks on the server side if the message has the correct answer, if this is true it will send an extra message that this is the correct answer and give the answer a green background. If it is not the correct answer it will just show it as a standard message. 
+
+### newDefinition
+This event is triggerd when someone clicks on the "new definition" button. On the server side a new word get fetched from the API. Becuase the API get's 10 words on each call it picks one of the words and puts this in an array. If the word is guessed correctly this word get's deleted. On the client side this definition get's shown to all users. 
+
+### Disconnect
+When an user disconnects this user get's removed from usernames array. This triggers the online user event which will then show the current online users and the user that just went online will be no longer visible. 
 
 
 ## Checklist
