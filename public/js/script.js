@@ -2,19 +2,18 @@ let socket = io();
 let messages = document.querySelector("#chat");
 let online = document.querySelector("section h3");
 let input = document.querySelector("input");
-
+let users = document.querySelector("#users");
 let username = prompt("Please enter your name:", "");
-const usersEl = document.querySelector("#users");
 
 //give usernam to socket
 socket.emit("login", { userId: username });
 
 // show who's online
 socket.on("online", (online) => {
-  usersEl.innerHTML = "";
+  users.innerHTML = "";
 
   for (const user of online) {
-    usersEl.appendChild(
+    users.appendChild(
       Object.assign(document.createElement("li"), {
         textContent: user,
       })

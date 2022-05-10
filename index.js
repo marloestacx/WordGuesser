@@ -23,7 +23,7 @@ const options = {
 };
 
 let correctAnswer = [];
-let names = [];
+let usernames = [];
 const users = {};
 // home page
 app.get("/", (req, res) => {
@@ -38,8 +38,8 @@ io.on("connection", (socket) => {
 
   //get username push to array
   socket.on("registerName", (username) => {
-    names.push(username);
-    io.emit("online", names);
+    usernames.push(username);
+    io.emit("online", usernames);
   });
 
   //create username
@@ -84,11 +84,11 @@ io.on("connection", (socket) => {
     console.log("user " + users[socket.id] + " disconnected");
 
     // filter disconnected user out of array
-    names = names.filter(function (e) {
+    usernames = usernames.filter(function (e) {
       return e !== users[socket.id];
     });
 
-    io.emit("online", names);
+    io.emit("online", usernames);
     // delete user
     delete users[socket.id];
   });
